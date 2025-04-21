@@ -140,6 +140,142 @@ app.get('/watchlist', async function (req, res) {
   });
 });
 
+// ----------------------------------------- POST routes -----------------------------------------
+
+// POST voor url /
+app.post("/", async function (req, res) {
+  // Haal de textField (webinar.id) en forField uit de request body
+  const { textField, forField } = req.body;
+
+  try {
+    // Haal de watchlist op
+    const watchlistResponseJSON = await fetchJson(messagesLink + messagesFilter);
+
+    // Zoek in de watchlist of het item al bestaat door te controleren op textField (webinar.id)
+    const existingItem = watchlistResponseJSON.data.find(item => item.text === textField);
+
+    if (existingItem) {
+      // Als het item al bestaat in de watchlist, verwijder het dan
+      await fetch(`${messagesLink}/${existingItem.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      });
+      console.log(`Verwijderd uit watchlist: ${textField}`);
+    } else {
+      // Voeg het item toe als het niet bestaat
+      await fetch(messagesLink, {
+        method: "POST",
+        body: JSON.stringify({
+          text: textField,
+          for: forField
+        }),
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      });
+      console.log(`Toegevoegd aan watchlist: ${textField}`);
+    }
+
+    // Stuur de gebruiker terug naar de watchlist pagina
+    res.redirect(303, "/");
+  } catch (error) {
+    console.error("Fout bij toggle van de watchlist:", error);
+    res.status(500).send("Er is een fout opgetreden.");
+  }
+});
+
+// POST voor url /webinars
+app.post("/webinars", async function (req, res) {
+  // Haal de textField (webinar.id) en forField uit de request body
+  const { textField, forField } = req.body;
+
+  try {
+    // Haal de watchlist op
+    const watchlistResponseJSON = await fetchJson(messagesLink + messagesFilter);
+
+    // Zoek in de watchlist of het item al bestaat door te controleren op textField (webinar.id)
+    const existingItem = watchlistResponseJSON.data.find(item => item.text === textField);
+
+    if (existingItem) {
+      // Als het item al bestaat in de watchlist, verwijder het dan
+      await fetch(`${messagesLink}/${existingItem.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      });
+      console.log(`Verwijderd uit watchlist: ${textField}`);
+    } else {
+      // Voeg het item toe als het niet bestaat
+      await fetch(messagesLink, {
+        method: "POST",
+        body: JSON.stringify({
+          text: textField,
+          for: forField
+        }),
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      });
+      console.log(`Toegevoegd aan watchlist: ${textField}`);
+    }
+
+    // Stuur de gebruiker terug naar de watchlist pagina
+    res.redirect(303, "/webinars");
+  } catch (error) {
+    console.error("Fout bij toggle van de watchlist:", error);
+    res.status(500).send("Er is een fout opgetreden.");
+  }
+});
+
+// POST voor url /watchlist
+app.post("/watchlist", async function (req, res) {
+  // Haal de textField (webinar.id) en forField uit de request body
+  const { textField, forField } = req.body; // textField is de webinar.id
+
+  try {
+    // Haal de huidige watchlist op
+    const watchlistResponseJSON = await fetchJson(messagesLink + messagesFilter);
+
+    // Zoek in de watchlist of het item al bestaat door te controleren op textField (webinar.id)
+    const existingItem = watchlistResponseJSON.data.find(item => item.text === textField);
+
+    if (existingItem) {
+      // Als het item al bestaat in de watchlist, verwijder het dan
+      await fetch(`${messagesLink}/${existingItem.id}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      });
+      console.log(`Verwijderd uit watchlist: ${textField}`);
+    } else {
+      // Voeg het item toe als het niet bestaat
+      await fetch(messagesLink, {
+        method: "POST",
+        body: JSON.stringify({
+          text: textField,
+          for: forField
+        }),
+        headers: {
+          "Content-Type": "application/json;charset=UTF-8"
+        }
+      });
+      console.log(`Toegevoegd aan watchlist: ${textField}`);
+    }
+
+    // Stuur de gebruiker terug naar de watchlist pagina
+    res.redirect(303, "/watchlist");
+  } catch (error) {
+    console.error("Fout bij toggle van de watchlist:", error);
+    res.status(500).send("Er is een fout opgetreden.");
+  }
+});
+
+// ----------------------------------------- Server port -----------------------------------------
+
 // Lokaal server port opzetten
 app.set('port', process.env.PORT || 8000)
 
