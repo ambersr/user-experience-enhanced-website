@@ -1,0 +1,179 @@
+{% render 'partials/head.liquid', title: 'Home' %}
+
+<div class="banner-home secondary-background width-top-btm" id="inhoud">
+    <section class="left-banner-home">
+        <p>Collaborate, learn & Innovate.</p>
+        <h1>The platform where Radiotherapists connect and innovate</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis
+            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur .</p>
+        <a class="border-link" href="">All webinars</a>
+    </section>
+
+    <img class="banner-home-img" src="/assets/banner-avl.jpeg"
+        alt="Radiotherapists collaborating at Antoni van Leeuwenhoek Hospital">
+</div>
+
+<div class="wrapper-webinars width-top">
+    <section class="heading-webinars">
+        <h2>Our webinars</h2>
+        <a class="green-link" href="#">All webinars</a>
+    </section>
+
+    <div class="webinars-slider">
+        <ul class="webinars-second">
+            {% for webinar in webinars %}
+
+            <li class="webinar">
+                <div class="webinar-img">
+                    <img class="banner" src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}"
+                        alt="{{ webinar.title }}">
+
+                    <ul class="category">
+                        {% for categorie in webinar.categories %}
+                        <li>
+                            <p class="category-label">{{ categorie.avl_categories_id.name }}</p>
+                        </li>
+                        {% endfor %}
+                    </ul>
+
+                    <p class="duration">{{ webinar.duration }}</p>
+
+                    <!-- Filter de webinar ID naar een string en verwijder eventuele spaties -->
+                    {% assign webinarIdString = webinar.id | string | strip %}
+                    <form class="webinar-form" method="POST" action="{{ webinarUrl }}"
+                        data-enhanced="form-{{ webinar.id}}">
+                        <input type="hidden" name="textField" value="{{ webinar.id }}">
+                        <input type="hidden" name="forField" value="Watchlist Amber">
+                        <button class="watchlist-btn" type="submit">
+                            {% if watchlistIds contains webinarIdString %}
+                            <img src="/assets/remove-from-watchlist-icon.svg" alt="">
+                            <span>Remove from watchlist</span>
+                            {% else %}
+                            <img src="/assets/add-to-watchlist-icon.svg" alt="">
+                            <span>Add to watchlist</span>
+                            {% endif %}
+                        </button>
+                    </form>
+                </div>
+                <h3>{{ webinar.title | truncatewords: 8 }}</h3>
+                <p class="speaker">
+                    {% for speaker in webinar.speakers %}
+                    {{ speaker.avl_speakers_id.fullname }}
+                    {% endfor %}
+                </p>
+                <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg"
+                        alt=""></a>
+            </li>
+
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+
+<div class="divider"></div>
+
+<div class="partner-home width">
+    <img class="banner-partner-img" src="/assets/banner-avl.jpeg" alt="">
+
+    <section class="left-partner">
+        <p>Partnership</p>
+        <h2>The partnership between the Netherlands and Indonesia</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+            magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis
+            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+            sint
+            occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <a class="border-link" href="">All webinars</a>
+    </section>
+</div>
+
+<div class="divider"></div>
+
+<div class="wrapper-contourings width-btm">
+    <section class="heading-contourings">
+        <h2>Our contourings</h2>
+        <a class="green-link" href="#">All contourings</a>
+    </section>
+
+    <ul class="contourings">
+
+        {% for contouring in contourings %}
+
+        <li class="contouring">
+            <img class="img-scan" src="https://fdnd-agency.directus.app/assets/{{ contouring.image_scan }}"
+                alt="{{ contouring.title }}">
+            <ul class="categories-contourings">
+                {% for categorie in contouring.categories %}
+                <li class="category">
+                    <p class="categorie-label">{{ categorie.avl_categories_id.name }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+            <h3>{{ contouring.title }}</h3>
+            <p class="user">{{ contouring.user_id.fullname }}</p>
+            <a class="arrow-link" href="#">Bekijk contouring <img src="/assets/arrow-right-webinar.svg" alt=""></a>
+        </li>
+
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+    if ('fetch' in window && 'DOMParser' in window) {
+
+        // Als er ergens op de pagina een formulier wordt gesubmit..
+        // (We maken hier gebruik van Event Delegation)
+        document.addEventListener('submit', async function (event) {
+
+            // Hou in een variabele bij welk formulier dat was
+            const form = event.target
+
+            // Als dit formulier geen data-enhanced attribuut heeft, doe dan niks
+            // Dit doen we, zodat we sommige formulieren op de pagina kunnen 'enhancen'
+            // Data attributen mag je zelf verzinnen; dit is dus niet iets speciaals
+            // https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Solve_HTML_problems/Use_data_attributes
+            if (!form.hasAttribute('data-enhanced')) {
+                return
+            }
+
+            // Voorkom de standaard submit van de browser
+            // Let op: hiermee overschrijven we de default Loading state van de browser...
+            event.preventDefault()
+
+            form.classList.add("loading")
+
+            // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
+            // Gebruik daarvoor het action en method attribuut van het originele formulier
+            // Inclusief alle formulierelementen
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new URLSearchParams(new FormData(form))
+            })
+
+            // De server redirect op de normale manier, en geeft HTML terug
+            // (De server weet niet eens dat deze fetch via client-side JavaScript gebeurde)
+            const responseText = await response.text()
+
+            // Normaal zou de browser die HTML parsen en weergeven, maar daar moeten we nu zelf iets mee
+            // Parse de nieuwe HTML en maak hiervan een nieuw Document Object Model in het geheugen
+            const parser = new DOMParser()
+            const responseDOM = parser.parseFromString(responseText, 'text/html')
+
+            // Zoek in die nieuwe DOM onze nieuwe state op, die we via Liquid hebben klaargemaakt
+            // We gebruiken hiervoor het data-enhanced attribuut, zodat we weten waar we naar moeten zoeken
+            // (Hierdoor kunnen we ook meerdere formulieren op dezelfde pagina gebruiken)
+            const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
+
+            // Overschrijf ons formulier met de nieuwe HTML
+            // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
+            form.outerHTML = newState.outerHTML
+        })
+    }
+</script>
+
+{% render 'partials/foot.liquid' %}

@@ -1,0 +1,45 @@
+<ul class="webinars">
+    {% for webinar in webinars %}
+
+    <li class="webinar">
+        <div class="webinar-img">
+            <img class="banner" src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}"
+                alt="{{ webinar.title }}">
+
+            <ul class="category">
+                {% for categorie in webinar.categories %}
+                <li>
+                    <p class="category-label">{{ categorie.avl_categories_id.name }}</p>
+                </li>
+                {% endfor %}
+            </ul>
+
+            <p class="duration">{{ webinar.duration }}</p>
+
+            <!-- Zet de webinar ID filter dit naar een string en verwijder eventuele spaties -->
+            {% assign webinarIdString = webinar.id | string | strip %}
+            <form class="webinar-form" method="POST" action="{{ webinarUrl }}" data-enhanced="form-{{ webinar.id }}">
+                <input type="hidden" name="textField" value="{{ webinar.id }}">
+                <input type="hidden" name="forField" value="Watchlist Amber">
+                <button class="watchlist-btn loading" type="submit">
+                    {% if watchlistIds contains webinarIdString %}
+                    <img src="/assets/remove-from-watchlist-icon.svg" alt="">
+                    <span>Remove from watchlist</span>
+                    {% else %}
+                    <img src="/assets/add-to-watchlist-icon.svg" alt="">
+                    <span>Add to watchlist</span>
+                    {% endif %}
+                </button>
+            </form>
+        </div>
+        <h3>{{ webinar.title | truncatewords: 8 }}</h3>
+        <p class="speaker">
+            {% for speaker in webinar.speakers %}
+            {{ speaker.avl_speakers_id.fullname }}
+            {% endfor %}
+        </p>
+        <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg" alt=""></a>
+    </li>
+
+    {% endfor %}
+</ul>

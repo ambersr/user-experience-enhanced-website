@@ -1,0 +1,119 @@
+{% render 'partials/head.liquid', title: 'Webinars' %}
+
+<section id="inhoud" class="standard-banner width-top-btm secondary-background">
+    {% render 'partials/breadcrumbs.liquid', breadcrumb_title: 'Webinars', breadcrumb_url: '/webinars' %}
+
+    <h1>Webinars</h1>
+    <p>Lorem ipsum odor amet, consectetuer adipiscing elit. Enim ipsum non egestas; primis luctus cubilia. Donec ut
+        venenatis.</p>
+</section>
+
+<div class="filters width-top">
+
+    <form class="sort-filter" method="GET" action="/webinars">
+        <div class="filter-webinar">
+            <p>Filter by category:</p>
+
+            <select name="category" id="category" class="filter-select">
+                <!-- Wanneer 'All' geselecteerd wordt en er is geen categorie geselecteerd of als de geselecteerde categorie een lege waarde heeft. -->
+                <option value="" {% if not selectedCategory or selectedCategory=="" %}selected{% endif %}>All</option>
+                {% for category in categories %}
+                <!-- Als de selectedCategory gelijk is aan de category.name selecteer dan de juiste categorie -->
+                <option value="{{ category.name }}" {% if selectedCategory==category.name %}selected{% endif %}>
+                    {{ category.name }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="filter-webinar">
+            <p>Sort webinars:</p>
+            <!-- Sorteer Filter -->
+            <select name="sort" class="filter-select">
+                <option value="new-old" {% if selectedSort=="new-old" %}selected{% endif %}>New to Old</option>
+                <option value="old-new" {% if selectedSort=="old-new" %}selected{% endif %}>Old to New</option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button class="green-link" type="submit">Filter</button>
+    </form>
+</div>
+
+
+<section class="results-webinar width-top-btm">
+    <h2>Results</h2>
+    <p class="result-items">
+        {% if webinars.size == 1 %}
+        1 webinar
+        {% else %}
+        {{ webinars.size }} webinars
+        {% endif %}
+    </p>
+
+    {% if webinars.size > 0 %}
+    {% render 'partials/webinar-card.liquid', webinars: webinars, watchlistIds: watchlistIds %}
+    {% else %}
+    <div class="fallback-category">
+        <p>There are no webinars available for the <b>categorie: {{ selectedCategory }}</b>.
+            View other categories for your interests.
+        </p>
+    </div>
+    {% endif %}
+
+</section>
+
+<script>
+    if ('fetch' in window && 'DOMParser' in window) {
+
+        // Als er ergens op de pagina een formulier wordt gesubmit..
+        // (We maken hier gebruik van Event Delegation)
+        document.addEventListener('submit', async function (event) {
+
+            // Hou in een variabele bij welk formulier dat was
+            const form = event.target
+
+            // Als dit formulier geen data-enhanced attribuut heeft, doe dan niks
+            // Dit doen we, zodat we sommige formulieren op de pagina kunnen 'enhancen'
+            // Data attributen mag je zelf verzinnen; dit is dus niet iets speciaals
+            // https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Solve_HTML_problems/Use_data_attributes
+            if (!form.hasAttribute('data-enhanced')) {
+                return
+            }
+
+            // Voorkom de standaard submit van de browser
+            // Let op: hiermee overschrijven we de default Loading state van de browser...
+            event.preventDefault()
+
+            form.classList.add("loading")
+
+            // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
+            // Gebruik daarvoor het action en method attribuut van het originele formulier
+            // Inclusief alle formulierelementen
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new URLSearchParams(new FormData(form))
+            })
+
+            // De server redirect op de normale manier, en geeft HTML terug
+            // (De server weet niet eens dat deze fetch via client-side JavaScript gebeurde)
+            const responseText = await response.text()
+
+            // Normaal zou de browser die HTML parsen en weergeven, maar daar moeten we nu zelf iets mee
+            // Parse de nieuwe HTML en maak hiervan een nieuw Document Object Model in het geheugen
+            const parser = new DOMParser()
+            const responseDOM = parser.parseFromString(responseText, 'text/html')
+
+            // Zoek in die nieuwe DOM onze nieuwe state op, die we via Liquid hebben klaargemaakt
+            // We gebruiken hiervoor het data-enhanced attribuut, zodat we weten waar we naar moeten zoeken
+            // (Hierdoor kunnen we ook meerdere formulieren op dezelfde pagina gebruiken)
+            const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
+
+            // Overschrijf ons formulier met de nieuwe HTML
+            // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
+            form.outerHTML = newState.outerHTML
+        })
+    }
+</script>
+
+{% render 'partials/foot.liquid' %}
