@@ -12,7 +12,7 @@
         <a class="border-link" href="">All webinars</a>
     </section>
 
-    <img class="banner-home-img" src="/assets/banner-avl.jpeg"
+    <img class="banner-home-img" src="/assets/avl-banner.jpeg"  width="250" height="150"
         alt="Radiotherapists collaborating at Antoni van Leeuwenhoek Hospital">
 </div>
 
@@ -28,7 +28,8 @@
 
             <li class="webinar">
                 <div class="webinar-img">
-                    <img class="banner" src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}"
+                    <img class="banner"
+                        src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=400&height=300&fit=cover"
                         alt="{{ webinar.title }}">
 
                     <ul class="category">
@@ -49,10 +50,10 @@
                         <input type="hidden" name="forField" value="Watchlist Amber">
                         <button class="watchlist-btn" type="submit">
                             {% if watchlistIds contains webinarIdString %}
-                            <img src="/assets/remove-from-watchlist-icon.svg" alt="">
+                            <img src="/assets/remove-from-watchlist-icon.svg" width="15" height="15" alt="">
                             <span>Remove from watchlist</span>
                             {% else %}
-                            <img src="/assets/add-to-watchlist-icon.svg" alt="">
+                            <img src="/assets/add-to-watchlist-icon.svg" width="15" height="15" alt="">
                             <span>Add to watchlist</span>
                             {% endif %}
                         </button>
@@ -64,7 +65,7 @@
                     {{ speaker.avl_speakers_id.fullname }}
                     {% endfor %}
                 </p>
-                <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg"
+                <a href="/webinars/{{ webinar.slug }}">View webinar<img src="/assets/arrow-right-webinar.svg" width="15" height="15"
                         alt=""></a>
             </li>
 
@@ -76,7 +77,7 @@
 <div class="divider"></div>
 
 <div class="partner-home width">
-    <img class="banner-partner-img" src="/assets/banner-avl.jpeg" alt="">
+    <img class="banner-partner-img" src="/assets/avl-banner.jpeg" width="250" height="150" alt="Radiotherapists collaborating at Antoni van Leeuwenhoek Hospital">
 
     <section class="left-partner">
         <p>Partnership</p>
@@ -105,7 +106,7 @@
         {% for contouring in contourings %}
 
         <li class="contouring">
-            <img class="img-scan" src="https://fdnd-agency.directus.app/assets/{{ contouring.image_scan }}"
+            <img class="img-scan" src="https://fdnd-agency.directus.app/assets/{{ contouring.image_scan }}?format=avif&width=400&height=300&fit=cover"
                 alt="{{ contouring.title }}">
             <ul class="categories-contourings">
                 {% for categorie in contouring.categories %}
@@ -116,7 +117,7 @@
             </ul>
             <h3>{{ contouring.title }}</h3>
             <p class="user">{{ contouring.user_id.fullname }}</p>
-            <a class="arrow-link" href="#">Bekijk contouring <img src="/assets/arrow-right-webinar.svg" alt=""></a>
+            <a class="arrow-link" href="#">Bekijk contouring <img src="/assets/arrow-right-webinar.svg" width="15" height="15" alt=""></a>
         </li>
 
         {% endfor %}

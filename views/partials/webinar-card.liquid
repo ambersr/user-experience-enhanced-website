@@ -3,7 +3,7 @@
 
     <li class="webinar">
         <div class="webinar-img">
-            <img class="banner" src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}"
+            <img class="banner" src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=400&height=300&fit=cover"
                 alt="{{ webinar.title }}">
 
             <ul class="category">
@@ -38,7 +38,7 @@
             {{ speaker.avl_speakers_id.fullname }}
             {% endfor %}
         </p>
-        <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg" alt=""></a>
+        <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg"  width="15" height="15" alt=""></a>
     </li>
 
     {% endfor %}
