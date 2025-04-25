@@ -644,6 +644,10 @@ select {
     gap: 1em;
 }
 
+.partner-home picture{
+    width: 100%;
+}
+
 .left-partner {
     display: flex;
     flex-wrap: wrap;
@@ -654,6 +658,7 @@ select {
     height: 20em;
     object-fit: cover;
     border-radius: var(--border-radius-md);
+    width: 100%;
 }
 
 .divider {
@@ -727,8 +732,14 @@ select {
         width: 50%;
     }
 
+    .banner-home picture {
+        display: flex;
+        justify-content: flex-end;
+        width: 50%;
+    }
+
     .banner-home-img {
-        width: 45%;
+        width: 100%;
         height: unset;
     }
 
@@ -748,8 +759,15 @@ select {
         gap: 5em;
     }
 
+    .left-partner {
+        width: 100%;
+    }
+    .partner-home picture {
+        width: 100%;
+    }
+
     .banner-partner-img {
-        width: 45%;
+        width: 100%;
         height: unset;
     }
 
