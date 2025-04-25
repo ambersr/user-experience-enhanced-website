@@ -3,8 +3,17 @@
 
     <li class="webinar">
         <div class="webinar-img">
-            <img class="banner" src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=400&height=300&fit=cover"
-                alt="{{ webinar.title }}">
+            <picture>
+                <source
+                    srcset="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=400&height=300&fit=cover"
+                    type="image/avif">
+                <source
+                    srcset="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=webp&width=400&height=300&fit=cover"
+                    type="image/webp">
+                <img class="banner"
+                    src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?width=400&height=300&fit=cover"
+                    alt="{{ webinar.title }}">
+            </picture>
 
             <ul class="category">
                 {% for categorie in webinar.categories %}
@@ -38,7 +47,8 @@
             {{ speaker.avl_speakers_id.fullname }}
             {% endfor %}
         </p>
-        <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg"  width="15" height="15" alt=""></a>
+        <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg" width="15"
+                height="15" alt=""></a>
     </li>
 
     {% endfor %}
