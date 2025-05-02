@@ -1,5 +1,101 @@
 {% render 'partials/head.liquid', title: 'Profile' %}
 
+<div class="banner-blue secondary-background width-top-btm">
+    {% render 'partials/breadcrumbs.liquid', breadcrumb_title: 'Profile', breadcrumb_url: '/profile' %}
+</div>
 
+<div class="banner-profile width-top">
+    <img src="/assets/profile-img.jpg" alt="Profile afbeelding van 'watchlist Amber">
+
+    <section class="profile-info">
+        <h1>Willem Breen, MD</h1>
+        <p class="function">Prof. R.P. (Rob) Coppes, PhD</p>
+        <p class="introduction">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+            incididunt ut labore et dolore magna
+            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat.</p>
+        <p class="location"><img src="/assets/map-icon.svg" alt="">Bali, Indonesia</p>
+        <a class="emailadress" href="mailto:willembreen@gmail.com"><img src="/assets/mail-icon.svg"
+                alt="">willembreen@gmail.com</a>
+        <a class="edit-btn primary-background" href="/"><svg xmlns="http://www.w3.org/2000/svg" height="24px"
+                viewBox="0 -960 960 960" width="24px">
+                <path
+                    d="M480-480q-66 0-113-47t-47-113q0-66 47-113t113-47q66 0 113 47t47 113q0 66-47 113t-113 47ZM160-160v-112q0-34 17.5-62.5T224-378q62-31 126-46.5T480-440q66 0 130 15.5T736-378q29 15 46.5 43.5T800-272v112H160Zm80-80h480v-32q0-11-5.5-20T700-306q-54-27-109-40.5T480-360q-56 0-111 13.5T260-306q-9 5-14.5 14t-5.5 20v32Zm240-320q33 0 56.5-23.5T560-640q0-33-23.5-56.5T480-720q-33 0-56.5 23.5T400-640q0 33 23.5 56.5T480-560Zm0-80Zm0 400Z" />
+            </svg>Change
+            profile</a>
+    </section>
+</div>
+
+<div class="divider"></div>
+
+<section class="added width-btm">
+    <h2>Added to watchlist</h2>
+
+    {% if webinars and webinars.size > 0 %}
+    {% render 'partials/webinar-card.liquid', webinars: webinars, watchlistIds: watchlistIds %}
+    {% else %}
+
+    <div class="fallback-webinars">
+        <img src="/assets/no-webinars-icon.svg" width="50" height="50" alt="">
+        <p>There are no webinars added to your watch later list. Go to webinars to add a webinar to your watchlist.</p>
+        <a class="green-link" href="/webinars">Webinars</a>
+    </div>
+    {% endif %}
+</section>
+
+<script>
+    if ('fetch' in window && 'DOMParser' in window) {
+
+        // Als er ergens op de pagina een formulier wordt gesubmit..
+        // (We maken hier gebruik van Event Delegation)
+        document.addEventListener('submit', async function (event) {
+
+            // Hou in een variabele bij welk formulier dat was
+            const form = event.target
+
+            // Als dit formulier geen data-enhanced attribuut heeft, doe dan niks
+            // Dit doen we, zodat we sommige formulieren op de pagina kunnen 'enhancen'
+            // Data attributen mag je zelf verzinnen; dit is dus niet iets speciaals
+            // https://developer.mozilla.org/en-US/docs/Learn_web_development/Howto/Solve_HTML_problems/Use_data_attributes
+            if (!form.hasAttribute('data-enhanced')) {
+                return
+            }
+
+            // Voorkom de standaard submit van de browser
+            // Let op: hiermee overschrijven we de default Loading state van de browser...
+            event.preventDefault()
+
+            form.classList.add("loading")
+
+            // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
+            // Gebruik daarvoor het action en method attribuut van het originele formulier
+            // Inclusief alle formulierelementen
+            const response = await fetch(form.action, {
+                method: form.method,
+                body: new URLSearchParams(new FormData(form))
+            })
+
+            // De server redirect op de normale manier, en geeft HTML terug
+            // (De server weet niet eens dat deze fetch via client-side JavaScript gebeurde)
+            const responseText = await response.text()
+
+            // Normaal zou de browser die HTML parsen en weergeven, maar daar moeten we nu zelf iets mee
+            // Parse de nieuwe HTML en maak hiervan een nieuw Document Object Model in het geheugen
+            const parser = new DOMParser()
+            const responseDOM = parser.parseFromString(responseText, 'text/html')
+
+            form.closest(".webinar")?.remove()
+
+            // Zoek in die nieuwe DOM onze nieuwe state op, die we via Liquid hebben klaargemaakt
+            // We gebruiken hiervoor het data-enhanced attribuut, zodat we weten waar we naar moeten zoeken
+            // (Hierdoor kunnen we ook meerdere formulieren op dezelfde pagina gebruiken)
+            const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
+
+            // Overschrijf ons formulier met de nieuwe HTML
+            // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
+            form.outerHTML = newState.outerHTML
+        })
+    }
+</script>
 
 {% render 'partials/foot.liquid' %}
