@@ -51,6 +51,12 @@
     align-items: center;
     gap: .1em;
     flex-direction: column-reverse;
+    height: 3.5em;
+}
+
+.icon-nav {
+    height: 25px;
+    width: 20px;
 }
 
 .main-nav .desktop-nav nav ul li a svg {

@@ -95,6 +95,9 @@ span {
     line-height: 180%;
     font-family: var(--font-paragraph), Arial, sans-serif;
     color: var(--primary-text-color);
+    font-size-adjust: 0.5;
+    /* Pas de grootte aan voor betere consistentie */
+    line-gap-override: 0.5;
 }
 
 /* ---------------------------------- Focus state -------------------------------- */
