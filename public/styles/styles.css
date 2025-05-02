@@ -55,6 +55,12 @@
     justify-content: center;
 }
 
+.text {
+ font-size-adjust: 0.5;
+ /* Pas de grootte aan voor betere consistentie */
+ line-gap-override: 0.5;
+}
+
 .icon-nav {
     height: 25px;
     width: 20px;

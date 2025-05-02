@@ -7,16 +7,25 @@
 
 @font-face {
     font-family: "Ubuntu Regular";
-    src: url(./fonts/ubuntu-regular.ttf) format('truetype');
+    src: url(/fonts/ubuntu-regular.ttf) format('truetype');
     font-display: swap;
     font-weight: 400;
 }
 
 @font-face {
     font-family: "Ubuntu Bold";
-    src: url(./fonts/ubuntu-bold.ttf) format('truetype');
+    src: url(/fonts/ubuntu-bold.ttf) format('truetype');
     font-display: swap;
     font-weight: 700;
+}
+
+@font-face {
+    font-family: "Ubuntu Fallback";
+    src: local("Arial");
+    ascent-override: 90%;
+    descent-override: 22%;
+    line-gap-override: 0%;
+    size-adjust: 105%;
 }
 
 body {
@@ -50,7 +59,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--heading-font), Arial, sans-serif;
+    font-family: "Ubuntu Regular", "Ubuntu Fallback", sans-serif;
 }
 
 h1 {
@@ -86,16 +95,14 @@ h6 {
 p {
     font-size: clamp(1rem, 1rem + 0vw, 1rem);
     line-height: 180%;
-    font-family: var(--font-paragraph), Arial, sans-serif;
-    color: var(--primary-text-color);
+    font-family: "Ubuntu Regular", "Ubuntu Fallback", sans-serif;
 }
 
 span {
     font-size: 16px;
     line-height: 180%;
-    font-family: var(--font-paragraph), Arial, sans-serif;
+    font-family: "Ubuntu Regular", "Ubuntu Fallback", sans-serif;
     color: var(--primary-text-color);
-    height: 20px;
 }
 
 /* ---------------------------------- Focus state -------------------------------- */
