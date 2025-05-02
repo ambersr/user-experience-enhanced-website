@@ -13,11 +13,40 @@
     </section>
 
     <picture>
-        <source srcset="/assets/avl-banner.avif" type="image/avif" width="250" height="150">
-        <source srcset="/assets/avl-banner.webp" type="image/webp" width="250" height="150">
-        <img class="banner-home-img" src="/assets/avl-banner.jpg"
-            alt="Radiotherapists collaborating at Antoni van Leeuwenhoek Hospital" width="250" height="150">
-    </picture>
+        <source 
+        srcset="
+                /assets/avl-banner.avif 250w, 
+                /assets/avl-banner.avif 350w, 
+                /assets/avl-banner.avif 450w, 
+                /assets/avl-banner.avif 750w" 
+        type="
+                image/avif" 
+        sizes="
+                (max-width: 250px) 250px,
+                (max-width: 350px) 350px,
+                (max-width: 750px) 750px,
+                (min-width: 751px) 100vw">
+        <source 
+        srcset="
+                /assets/avl-banner.webp 250w, 
+                /assets/avl-banner.webp 350w, 
+                /assets/avl-banner.webp 450w, 
+                /assets/avl-banner.avif 750w"
+        type="image/webp" 
+        sizes="
+                (max-width: 250px) 250px,
+                (max-width: 350px) 350px,
+                (min-width: 450px) 450px,
+                (min-width: 751px) 100vw">
+        <img 
+            class="banner-home-img" 
+            src="/assets/avl-banner.jpg"
+            alt="Radiotherapists collaborating at Antoni van Leeuwenhoek Hospital" 
+            width="300" 
+            height="250"
+            object-fit="cover">
+        </picture>
+
 </div>
 
 <div class="wrapper-webinars width-top">
@@ -113,10 +142,38 @@
 
 <div class="partner-home width">
     <picture>
-        <source srcset="/assets/avl-banner.avif" type="image/avif" width="250" height="150">
-        <source srcset="/assets/avl-banner.webp" type="image/webp" width="250" height="150">
-        <img class="banner-partner-img" src="/assets/avl-banner.jpg"
-            alt="Radiotherapists collaborating at Antoni van Leeuwenhoek Hospital" width="250" height="150">
+        <source 
+            srcset="
+                    /assets/avl-banner.avif 250w, 
+                    /assets/avl-banner.avif 350w, 
+                    /assets/avl-banner.avif 450w, 
+                    /assets/avl-banner.avif 750w" 
+            type="
+                    image/avif" 
+            sizes="
+                    (max-width: 250px) 250px,
+                    (max-width: 350px) 350px,
+                    (max-width: 750px) 750px,
+                    (min-width: 751px) 100vw">
+        <source 
+            srcset="
+                    /assets/avl-banner.webp 250w, 
+                    /assets/avl-banner.webp 350w, 
+                    /assets/avl-banner.webp 450w, 
+                    /assets/avl-banner.avif 750w" 
+            type="image/webp" 
+            sizes="
+                    (max-width: 250px) 250px,
+                    (max-width: 350px) 350px,
+                    (min-width: 450px) 450px,
+                    (min-width: 751px) 100vw">
+        <img 
+            class="banner-partner-img" 
+            src="/assets/avl-banner.jpg"
+            alt="Radiotherapists collaborating at Antoni van Leeuwenhoek Hospital" 
+            width="300" 
+            height="250"
+            object-fit="cover">
     </picture>
 
     <section class="left-partner">
