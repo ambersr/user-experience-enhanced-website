@@ -887,3 +887,62 @@ select {
         }
     }
 }
+
+/* ------------------------------ Profile ----------------------------------- */
+
+.banner-blue {
+    padding-top: 8em !important;
+    padding-bottom: 20em !important;
+}
+
+.banner-profile {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    margin-top: -23em;
+}
+
+.profile-info {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+}
+
+.location {
+    display: flex;
+    align-items: center;
+    gap: .4em;
+}
+
+.emailadress {
+    display: flex;
+    align-items: center;
+    gap: .4em;
+}
+
+.edit-btn {
+    display: flex;
+    align-self: baseline;
+    color: #fff;
+    border-radius: 20em;
+    padding: .5em 1em;
+    gap: .5em;
+    border: 1.5px solid var(--primary-background-color);
+    transition: .2s ease-in-out;
+    align-items: center;
+}
+
+.edit-btn svg {
+    fill: #fff;
+}
+
+.edit-btn:hover svg{
+    fill: var(--primary-background-color);
+}
+
+.edit-btn:hover {
+    background-color: var(--third-background-color);
+    color: var(--primary-text-color);
+    transition: .2s ease-in-out;
+}
+
