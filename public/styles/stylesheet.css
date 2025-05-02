@@ -9,7 +9,7 @@
     font-family: "Ubuntu Regular";
     src: url(/fonts/ubuntu-regular.ttf) format('truetype');
     font-display: swap;
-    font-weight: 700;
+    font-weight: 400;
 }
 
 @font-face {
@@ -50,8 +50,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: var(--heading-font);
-    font-weight: 400;
+    font-family: var(--heading-font), Arial, sans-serif;
 }
 
 h1 {
@@ -87,7 +86,14 @@ h6 {
 p {
     font-size: clamp(1rem, 1rem + 0vw, 1rem);
     line-height: 180%;
-    font-family: var(--font-paragraph);
+    font-family: var(--font-paragraph), Arial, sans-serif;
+    color: var(--primary-text-color);
+}
+
+span {
+    font-size: clamp(1rem, 1rem + 0vw, 1rem);
+    line-height: 180%;
+    font-family: var(--font-paragraph), Arial, sans-serif;
     color: var(--primary-text-color);
 }
 
@@ -198,7 +204,7 @@ button {
 
 a {
     font-size: clamp(1rem, 1rem + 0vw, 1rem);
-    font-family: var(--font-paragraph);
+    font-family: var(--font-paragraph), Arial, sans-serif;
     color: var(--primary-text-color);
     transition: transform ease-in-out .2s;
     text-decoration: none;
