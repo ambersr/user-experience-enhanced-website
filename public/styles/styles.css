@@ -50,7 +50,7 @@
     display: flex;
     align-items: center;
     gap: .1em;
-    flex-direction: column-reverse;
+    flex-direction: column;
     height: 3.5em;
     justify-content: center;
 }
