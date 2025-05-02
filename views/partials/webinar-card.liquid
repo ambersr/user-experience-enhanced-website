@@ -5,16 +5,39 @@
         <div class="webinar-img">
             <picture>
                 <source
-                    srcset="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=400&height=300&fit=cover"
-                    type="image/avif">
+                    srcset="
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=150 150w,
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=250 250w,
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=350 350w,
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=avif&width=400 400w"
+                    type="
+                        image/avif" 
+                    sizes="
+                        (max-width: 150px) 150px,
+                        (max-width: 250px) 250px,
+                        (max-width: 350px) 350px,
+                        (min-width: 400px) 400px">
                 <source
-                    srcset="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=webp&width=400&height=300&fit=cover"
-                    type="image/webp">
-                <img class="banner"
-                    src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?width=400&height=300&fit=cover"
-                    alt="{{ webinar.title }}">
+                    srcset="
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=webp&width=150 150w,
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=webp&width=250 250w,
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=webp&width=350 350w,
+                        https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?format=webp&width=400 400w"
+                    type="
+                        image/webp" 
+                    sizes="
+                        (max-width: 150px) 150px,
+                        (max-width: 250px) 250px,
+                        (max-width: 350px) 350px,
+                        (min-width: 400px) 400px">
+                <img 
+                    class="banner"
+                    src="https://fdnd-agency.directus.app/assets/{{ webinar.thumbnail }}?width=450&height=338&fit=cover"
+                    alt="{{ webinar.title }}" 
+                    width="350" 
+                    height="300">
             </picture>
-
+        
             <ul class="category">
                 {% for categorie in webinar.categories %}
                 <li>
@@ -47,8 +70,7 @@
             {{ speaker.avl_speakers_id.fullname }}
             {% endfor %}
         </p>
-        <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg" width="15"
-                height="15" alt=""></a>
+        <a href="/webinars/{{ webinar.slug }}">View webinar <img src="/assets/arrow-right-webinar.svg"  width="15" height="15" alt=""></a>
     </li>
 
     {% endfor %}
