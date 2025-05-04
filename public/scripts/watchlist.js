@@ -22,14 +22,15 @@ document.addEventListener('submit', async function (event) {
     form.classList.add("loading")
 
     // lijst met alle webinars
-    const webinarList = document.querySelectorAll(".webinar");
+    const watchlistAdded = document.querySelectorAll(".webinar");
 
     // als het aangeklikte form de laatste is op de pagina, ga naar de normale POST (en dus niet client-side)
-    if (webinarList.length === 1) {
-        form.submit() // trigger POST submit (server-side) en pagina reload ---> empty state ingeladen
-        return // verlaat script
+    if ( watchlistAdded.length === 1) {
+    form.submit() // trigger POST submit (server-side) en pagina reload ---> empty state ingeladen
+    return // verlaat script
     }
 
+    
     // Doe een fetch naar de server, net als hoe de browser dit normaal zou doen
     // Gebruik daarvoor het action en method attribuut van het originele formulier
     // Inclusief alle formulierelementen
