@@ -129,14 +129,17 @@
     .main-nav .desktop-nav nav ul {
         display: flex;
         flex-direction: row;
-        gap: 3em;
         line-height: unset;
         align-items: center;
     }
 
-    @supports not (gap: 3em) {
-        .main-nav .desktop-nav nav ul li {
-            margin-left: 2em;
+    .main-nav .desktop-nav nav ul li {
+        margin-left: 2em;
+    }
+
+    @supports (gap: 3em) {
+        .main-nav .desktop-nav nav ul {
+            gap: 3em;
         }
     }
 
@@ -189,7 +192,11 @@ footer {
 .wrapper-footer {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+}
+
+.wrapper-footer .info,
+.navigation {
+    margin-bottom: 2em;
 }
 
 .info {
@@ -216,7 +223,6 @@ footer {
 .navigation {
     display: flex;
     flex-direction: column;
-    gap: 1em;
 }
 
 .contact-info {
@@ -232,6 +238,11 @@ footer {
     margin: 2em 0em;
 } */
 
+.navigation ul,
+.contact-info ul {
+    margin-top: 1em;
+}
+
 .extra-info {
     display: flex;
     flex-direction: row;
@@ -244,20 +255,21 @@ footer {
     gap: 1em;
 }
 
-@supports not (gap: 1em) {
+@supports (gap: 1em) {
 
     .navigation ul,
     .contact-info ul {
-        margin-top: 1em;
+        gap: 1em;
+        margin: 0;
     }
 }
 
-@supports not (gap: 2em) {
+@supports (gap: 2em) {
 
     .wrapper-footer .info,
     .navigation,
     .contact-info {
-        margin-top: 2em;
+        gap: 2em;
     }
 }
 
@@ -299,8 +311,12 @@ footer {
 
 .webinars {
     display: grid;
-    gap: 1.5em;
     padding: 1.5em 0em 0em 0em;
+    margin: -0.75em;
+}
+
+.webinars>* {
+    margin: 0.75em;
 }
 
 @media screen and (min-width: 720px) {
@@ -309,13 +325,13 @@ footer {
     }
 }
 
-@supports not (gap: 1.5em) {
+@supports (gap: 1.5em) {
     .webinars {
-        margin: -0.75em;
+        gap: 1.5em;
     }
 
     .webinars>* {
-        margin: 0.75em;
+        margin: 0em;
     }
 }
 
@@ -325,19 +341,22 @@ footer {
     border-radius: var(--border-radius-md);
     display: flex;
     flex-direction: column;
-    gap: 1em;
     width: 100%;
-}
-
-@supports not (gap: 1em) {
-
-    .webinar-img {
-        margin-bottom: 1em;
-    }
 }
 
 .webinar-img {
     position: relative;
+    margin-bottom: 1em;
+}
+
+@supports (gap: 1em) {
+    .webinar {
+        gap: 1em;
+    }
+
+    .webinar-img {
+        margin: 0;
+    }
 }
 
 .banner {
@@ -346,11 +365,12 @@ footer {
     border-radius: var(--border-radius-md);
     object-fit: cover;
     display: block;
+    padding-top: 6em;
 }
 
-@supports not (gap: 1em) {
+@supports (gap: 1em) {
     .banner {
-        padding-top: 6em;
+        padding-top: 0em;
     }
 }
 
@@ -393,15 +413,24 @@ form .watchlist-btn {
 }
 
 .watchlist-btn img {
-    width: 1.3em;
-    height: 1.3em;
+    padding-left: .5em;
+    width: 1.5em;
+    height: 1.5em;
 }
 
-@supports not (gap: .5em) {
+@supports (gap: .5em) {
+    .watchlist-btn {
+        padding: .5em .6em;
+        display: flex;
+        flex-direction: row-reverse;
+        gap: .5em;
+        align-items: center;
+    }
+
     .watchlist-btn img {
-        padding-left: .5em;
-        width: 1.5em;
-        height: 1.5em;
+        width: 1.3em;
+        height: 1.3em;
+        padding-left: 0em;
     }
 }
 
@@ -418,28 +447,36 @@ form .watchlist-btn {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: .5em;
     transition: .2s ease-in-out;
 }
 
-@supports not (gap: .5em) {
+.webinar a img {
+    padding-left: .5em;
+}
+
+@supports (gap: .5em) {
+    .webinar a {
+        gap: .5em;
+    }
+
     .webinar a img {
-        padding-left: .5em;
+        padding-left: 0em;
     }
 }
 
 .webinar a:hover img {
-    translate: .7em 0em;
+    margin-right: 1em;
     transition: .2s ease-in-out;
 }
 
-@supports not (translate: .7em 0em) {
+@supports (translate: .7em 0em) {
     .webinar a:hover img {
-        padding-left: 1em;
+        translate: .7em 0em;
+        margin: 0;
     }
 }
 
-/* -------- Loading animation ----------- */
+/* -------- Loading animation webinar en form ----------- */
 
 .webinar-form.loading span {
     display: none;
@@ -456,6 +493,22 @@ form .watchlist-btn {
     animation: rotation 1s linear infinite;
 }
 
+.filter-form.loading span {
+    display: none;
+}
+
+.filter-form.loading button::after {
+    content: 'Loading';
+}
+
+
+.filter-form.loading button img {
+    content: url('/assets/loading-icon.svg');
+    font-size: 14px;
+    animation: rotation 1s linear infinite;
+}
+
+
 @keyframes rotation {
     0% {
         transform: rotate(0deg);
@@ -471,12 +524,19 @@ form .watchlist-btn {
 .breadcrumbs {
     display: flex;
     flex-direction: row;
-    gap: .5em;
 }
 
-@supports not (gap: .5em) {
+.breadcrumbs .first {
+    padding-right: .5em;
+}
+
+@supports (gap: .5em) {
+    .breadcrumbs {
+        gap: .5em;
+    }
+
     .breadcrumbs .first {
-        padding-right: .5em;
+        padding-right: 0em;
     }
 }
 
@@ -530,6 +590,7 @@ select {
     font-size: 16px;
     font-family: var(--font-paragraph);
     appearance: none;
+    -webkit-appearance: none;
     width: 10em;
     background-image: url('/assets/chevron-down.svg');
     background-position: right 1em center;
@@ -538,9 +599,10 @@ select {
     cursor: pointer;
 }
 
-@supports not (appearance: none) {
+@supports (appearance: none) {
     select {
-        -webkit-appearance: none;
+        -webkit-appearance: unset;
+        appearance: none;
     }
 }
 
@@ -548,12 +610,6 @@ select {
     display: flex;
     flex-direction: column;
     gap: 1em;
-}
-
-@supports not (gap: 1em) {
-    .filter-webinar {
-        padding-right: 1em;
-    }
 }
 
 .results-webinar {
@@ -745,11 +801,12 @@ select {
     .banner-home {
         padding-top: 9em !important;
         flex-direction: row;
-        gap: 5em;
     }
 
     .left-banner-home {
         width: 50%;
+        padding-right: 4em;
+        align-items: center;
     }
 
     .banner-home picture {
@@ -759,28 +816,32 @@ select {
     }
 
     .banner-home-img {
-        width: 100%;
-        height: unset;
+        height: 22em;
     }
 
-    @supports not (gap: 1em) {
+    @supports (gap: 1em) {
         .banner-home-img {
-            height: 22em;
+            width: 100%;
+            height: unset;
         }
 
         .left-banner-home {
-            padding-right: 4em;
-            align-items: center;
+            padding-right: 0em;
+        }
+
+        .banner-home {
+            gap: 5em;
         }
     }
 
+
     .partner-home {
         flex-direction: row;
-        gap: 5em;
     }
 
     .left-partner {
         width: 100%;
+        padding-left: 3em;
     }
 
     .partner-home picture {
@@ -789,16 +850,20 @@ select {
 
     .banner-partner-img {
         width: 100%;
-        height: unset;
+        height: 22em;
     }
 
-    @supports not (gap: 1em) {
+    @supports (gap: 1em) {
         .banner-partner-img {
-            height: 22em;
+            height: unset;
         }
 
         .left-partner {
-            padding-left: 3em;
+            padding-left: 0em;
+        }
+
+        .partner-home {
+            gap: 5em;
         }
     }
 
@@ -807,9 +872,13 @@ select {
         grid-template-columns: repeat(auto-fill, minmax(20em, 1fr));
     }
 
-    @supports not (gap: 1em) {
+    .img-scan {
+        padding-top: 6em;
+    }
+
+    @supports (gap: 1em) {
         .img-scan {
-            padding-top: 6em;
+            padding-top: 0em;
         }
     }
 }
@@ -994,7 +1063,7 @@ select {
 #counterNumber {
     font-size: 16px;
     width: 1.5em;
-    height: 1.5em ;
+    height: 1.5em;
     border-radius: 100px;
     background-color: var(--primary-highlight-color);
     color: var(--primary-text-color);
@@ -1008,8 +1077,8 @@ select {
 
 @media screen and (min-width: 720px) {
     #counterNumber {
-       position: unset;
-       margin-right: unset;
+        position: unset;
+        margin-right: unset;
     }
 }
 
