@@ -47,17 +47,19 @@ app.get('/', async function (req, res) {
   // Haalt alle text waarden uit de array watchlist database, deze worden omgezet naar een string. 
   // De strings worden in een set gestopt zodat er een lijst is met alle unieke ID's
   const watchlistIds = new Set(watchlistResponseJSON.data.map(item => String(item.text)));
-
-  console.log(watchlistIds)
   
   // Zet de Set om naar een Array, want Liquid kan niet met Sets werken
   // Hierdoor krijg je een array met alle unieke 'text' waarden als strings
   const watchlistArray = Array.from(watchlistIds);
 
+  // Het aantal webinars in de watchlistArray
+  const counter = watchlistArray.length;
+
   res.render("index.liquid", {
     webinars: webinarsResponseJSON.data,
     contourings: contouringsResponseJSON.data,
-    watchlistIds: watchlistArray
+    watchlistIds: watchlistArray,
+    counter: counter
   })
 });
 
@@ -80,6 +82,9 @@ app.get("/webinars", async function (req, res) {
   // Zet de Set om naar een Array, want Liquid kan niet met Sets werken
   // Hierdoor krijg je een array met alle unieke 'text' waarden als strings
   const watchlistArray = Array.from(watchlistIds);
+
+  // Het aantal webinars in de watchlistArray
+  const counter = watchlistArray.length;
 
   // Lijst met alle webinars
   let filteredWebinars = webinarsResponseJSON.data;
@@ -109,7 +114,8 @@ app.get("/webinars", async function (req, res) {
     categories: categoryResponseJSON.data,
     selectedCategory: categoryFilter, // Zorgt dat de juiste radio button gecheckt blijft
     selectedSort: sortOption,
-    watchlistIds: watchlistArray
+    watchlistIds: watchlistArray,
+    counter: counter
   });
 })
 
@@ -135,9 +141,13 @@ app.get('/profile', async function (req, res) {
   // Hierdoor krijg je een array met alle unieke 'text' waarden als strings
   const watchlistArrays = Array.from(watchlistWebinarIds);
 
+  // Het aantal webinars in de watchlistArray
+  const counter = watchlistArrays.length;
+
   res.render("profile.liquid", {
     webinars: webinarsInWatchlist,
-    watchlistIds: watchlistArrays
+    watchlistIds: watchlistArrays,
+    counter: counter
   });
 });
 
@@ -162,9 +172,13 @@ app.get('/watchlist', async function (req, res) {
   // Hierdoor krijg je een array met alle unieke 'text' waarden als strings
   const watchlistArrays = Array.from(watchlistWebinarIds);
 
+  // Het aantal webinars in de watchlistArray
+  const counter = watchlistArrays.length;
+
   res.render("watchlist.liquid", {
     webinars: webinarsInWatchlist,
-    watchlistIds: watchlistArrays
+    watchlistIds: watchlistArrays,
+    counter: counter
   });
 });
 
