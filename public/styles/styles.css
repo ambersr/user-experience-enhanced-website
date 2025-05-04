@@ -56,9 +56,9 @@
 }
 
 .text {
- font-size-adjust: 0.5;
- /* Pas de grootte aan voor betere consistentie */
- line-gap-override: 0.5;
+    font-size-adjust: 0.5;
+    /* Pas de grootte aan voor betere consistentie */
+    line-gap-override: 0.5;
 }
 
 .icon-nav {
@@ -664,7 +664,7 @@ select {
     gap: 1em;
 }
 
-.partner-home picture{
+.partner-home picture {
     width: 100%;
 }
 
@@ -782,6 +782,7 @@ select {
     .left-partner {
         width: 100%;
     }
+
     .partner-home picture {
         width: 100%;
     }
@@ -936,7 +937,7 @@ select {
     fill: #fff;
 }
 
-.edit-btn:hover svg{
+.edit-btn:hover svg {
     fill: var(--primary-background-color);
 }
 
@@ -946,7 +947,7 @@ select {
     transition: .2s ease-in-out;
 }
 
- @media screen and (min-width: 720px) {
+@media screen and (min-width: 720px) {
     .banner-blue {
         padding-top: 9em !important;
         padding-bottom: 4em !important;
@@ -967,9 +968,9 @@ select {
     .edit-btn {
         margin-top: 1em;
     }
- }
+}
 
-  @media screen and (min-width: 920px) {
+@media screen and (min-width: 920px) {
     .banner-blue {
         padding-top: 9em !important;
         padding-bottom: 4em !important;
@@ -986,4 +987,66 @@ select {
     .profile-info {
         padding-top: 4em;
     }
-  }
+}
+
+/* -------------------------------------  Animatie counter --------------------------------------- */
+
+#counterNumber {
+    font-size: 16px;
+    width: 1.5em;
+    height: 1.5em ;
+    border-radius: 100px;
+    background-color: var(--primary-highlight-color);
+    color: var(--primary-text-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: .8em;
+    margin-right: -2.0em;
+}
+
+@media screen and (min-width: 720px) {
+    #counterNumber {
+       position: unset;
+       margin-right: unset;
+    }
+}
+
+
+@keyframes bounceInDown {
+
+    0%,
+    60%,
+    75%,
+    90%,
+    100% {
+        transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        opacity: 0;
+        transform: translate3d(0, -3000px, 0) scale(0.3);
+    }
+
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 25px, 0) scale(1.1);
+    }
+
+    75% {
+        transform: translate3d(0, -10px, 0) scale(0.95);
+    }
+
+    90% {
+        transform: translate3d(0, 5px, 0) scale(1.02);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+}
+
+.animate-change {
+    animation: bounceInDown 1s ease-out both;
+}

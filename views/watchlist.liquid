@@ -74,6 +74,25 @@
             // (Hierdoor kunnen we ook meerdere formulieren op dezelfde pagina gebruiken)
             const newState = responseDOM.querySelector('[data-enhanced="' + form.getAttribute('data-enhanced') + '"]')
 
+            // Zoek naar het element met het id 'counterNumber'
+            const newCounter = responseDOM.querySelector('#counterNumber');
+            if (newCounter) {
+                // Als het element gevonden is, werk dan het bestaande element met id 'counterNumber' bij met het nieuwe aantal in de counter
+                const counterElement = document.getElementById('counterNumber');
+
+                // Voeg de animatieklasse toe
+                counterElement.classList.add('animate-change');
+
+                // Verander de tekst van de counter
+                counterElement.textContent = newCounter.textContent;
+
+                // Voeg een eventlistener toe voor wanneer de animatie eindigt
+                counterElement.addEventListener('animationend', () => {
+                    // Verwijder de animatieklasse na de animatie
+                    counterElement.classList.remove('animate-change');
+                });
+            }
+
             // Overschrijf ons formulier met de nieuwe HTML
             // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
             form.outerHTML = newState.outerHTML
