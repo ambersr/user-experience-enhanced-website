@@ -48,17 +48,17 @@
 
             <p class="duration">{{ webinar.duration }}</p>
 
-            <!-- Zet de webinar ID filter dit naar een string en verwijder eventuele spaties -->
+            <!-- Filter de webinar ID naar een string en verwijder eventuele spaties -->
             {% assign webinarIdString = webinar.id | string | strip %}
-            <form class="webinar-form" method="POST" action="{{ webinarUrl }}" data-enhanced="form-{{ webinar.id }}">
+            <form class="webinar-form" method="POST" action="{{ webinarUrl }}" data-enhanced="form-{{ webinar.id}}">
                 <input type="hidden" name="textField" value="{{ webinar.id }}">
                 <input type="hidden" name="forField" value="Watchlist Amber">
-                <button class="watchlist-btn loading" type="submit">
+                <button class="watchlist-btn" type="submit">
                     {% if watchlistIds contains webinarIdString %}
-                    <img src="/assets/remove-from-watchlist-icon.svg" alt="">
+                    <img src="/assets/remove-from-watchlist-icon.svg" width="15" height="15" alt="">
                     <span>Remove from watchlist</span>
                     {% else %}
-                    <img src="/assets/add-to-watchlist-icon.svg" alt="">
+                    <img src="/assets/add-to-watchlist-icon.svg" width="15" height="15" alt="">
                     <span>Add to watchlist</span>
                     {% endif %}
                 </button>

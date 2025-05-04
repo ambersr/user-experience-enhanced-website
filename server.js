@@ -69,6 +69,7 @@ app.get("/webinars", async function (req, res) {
   // Haalt de 'sort' parameter op, of gebruikt "new-old" als die er niet is.
   const categoryFilter = req.query.category || ""; 
   const sortOption = req.query.sort || "new-old";
+  const filtersActive = categoryFilter !== "" || sortOption !== "new-old";
 
   // Fetches alle webinars, categorieën en watchlist 
   const webinarsResponseJSON = await fetchJson(webinarsLink + webinarsField);
@@ -115,7 +116,8 @@ app.get("/webinars", async function (req, res) {
     selectedCategory: categoryFilter, // Zorgt dat de juiste radio button gecheckt blijft
     selectedSort: sortOption,
     watchlistIds: watchlistArray,
-    counter: counter
+    counter: counter,
+    filtersActive
   });
 })
 
@@ -171,6 +173,9 @@ app.get('/watchlist', async function (req, res) {
   // Zet de Set om naar een Array, want Liquid kan niet met Sets werken
   // Hierdoor krijg je een array met alle unieke 'text' waarden als strings
   const watchlistArrays = Array.from(watchlistWebinarIds);
+
+  console.log(watchlistArrays);
+
 
   // Het aantal webinars in de watchlistArray
   const counter = watchlistArrays.length;
