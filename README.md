@@ -56,6 +56,10 @@ Lazy load toegevoegd op images:
 
 https://github.com/ambersr/user-experience-enhanced-website/blob/72f0874a3012ca2e1e3c18f2d5bfd4608712b0ea/views/partials/foot.liquid#L5-L10
 
+Responsive images:
+
+https://github.com/ambersr/user-experience-enhanced-website/blob/ef17eda69256bdac72a958ddede6618af13a900d/views/index.liquid#L15-L48
+
 - Profielpagina
   
 Nieuw ontwerp gemaakt voor de profielpagina. Het proces hiervan is hier te volgen. De profielpagina bevat gegevens van de user en de opgeslagen webinars in de watchlist worden hier ook weergegeven.
