@@ -12,8 +12,7 @@ Oncollaboration is een ontwerp voor een online platform voor samenwerking en ken
 
 ### Vraag opdrachtgever
 
-Ontwikkel een platform waar de focus op webinars ligt.
-
+Ontwikkel een platform waarop webinars door radiotherapeuten uit Indonesië en Nederland via webinars kennis op kunnen doen en delen.
 ## Inhoudsopgave
 
   * [Beschrijving](#beschrijving)
