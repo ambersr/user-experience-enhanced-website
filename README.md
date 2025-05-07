@@ -3,7 +3,9 @@
 
 Het platform waar radiologen uit Indonesië en Nederland samenkomen om hun kennis te delen en recente ontwikkelingen in hun medische vakgebied te bespreken.
 
-Tijdens sprint 8 lag de focus voor het ontwikkelen van de pagina's op de webinar overzichtspagina en de webinar detailpagina. Alle content wordt dynamisch opgehaald uit een database die ik van de opdrachtgever ontvangen heb.
+Tijdens sprint 10 lag de focus op het verbeteren van de performance van de website. Zoals UI states, responsive images enz..
+
+Linkje naar de website: https://user-experience-enhanced-website-1h6y.onrender.com/webinars
 
 ### Wie is Oncollaboration
 Oncollaboration is een ontwerp voor een online platform voor samenwerking en kennisdeling tussen Indoneschische en Nederlandse radiotherapeuten. Oncollaboration is het afstudeerwerk van oud-CMD student Sergio Eijben. Sergio is in opdracht van radiotherapeute Judi van Diessen van het Antoni van Leeuwenhoek ziekenhuis afgestudeerd op de vraag over hoe de samenwerking en kennisdeling tussen Indoneschische en Nederlandse radiotherapeuten te verbeteren.
@@ -27,16 +29,34 @@ Oncollaboration is een platform waarop radiotherapeuten uit zowel Indonesië als
 ### Het ontwikkelde platform
 Op dit platform kun je webinars bekijken en eventueel toevoegen aan de watchlist zodat je deze op een later moment kan terugbekijken. Daarnaast bevat het platform een homepagina waarop belangrijke informatie over Oncollaboration gedeeld kan worden en de samenwerking tussen de ziekenhuizen naar voren komen.
 
-- Homepagina: Hier staat belangrijke informatie mbt de samenwerking tussen de ziekenhuizen en extra informatie over Oncollaboration.
-- Webinars overzicht pagina: Overzicht van alle webinars. Deze zijn te filteren op categorie en van oud-nieuw.
-- Watchlist pagina: Overzicht met alle opgeslagen webinars in de watchlist.
-- Profielpagina: Hierop worden alle gegevens van de user weergegeven. Daarnaast worden ook de opgeslagen webinars die in de watchlist staan hier weergegeven.
+- **Homepagina:** Hier staat belangrijke informatie mbt de samenwerking tussen de ziekenhuizen en extra informatie over Oncollaboration. [Linkje naar de pagina](https://user-experience-enhanced-website-1h6y.onrender.com/)
+- **Webinars overzicht pagina:** Overzicht van alle webinars. Deze zijn te filteren op categorie en van oud-nieuw. [Linkje naar de pagina](https://user-experience-enhanced-website-1h6y.onrender.com/webinars)
+- **Watchlist pagina:** Overzicht met alle opgeslagen webinars in de watchlist. [Linkje naar de pagina](https://user-experience-enhanced-website-1h6y.onrender.com/watchlist)
+- **Profielpagina:** Hierop worden alle gegevens van de user weergegeven. Daarnaast worden ook de opgeslagen webinars die in de watchlist staan hier weergegeven. [Linkje naar de pagina](https://user-experience-enhanced-website-1h6y.onrender.com/profile)
 
-Linkje naar de website: https://user-experience-enhanced-website-1h6y.onrender.com/
-<!-- Bij Beschrijving staat kort beschreven wat voor project het is en wat je hebt gemaakt -->
+### Belangrijke (nieuwe) features:
+- Performance verbetering
+De website is getest op performance laadtijd. Hierbij zijn in de code een aantal aanpassingen toegevoegd waarbij het ontstaan van layshifts voorkomen wordt, images de juiste formats bevatten en de juiste grootte op het juiste beeldscherm geladen worden, lazy load toegevoegd op afbeeldingen.
+
+Webinar afbeelding format aangepast:
+https://github.com/ambersr/user-experience-enhanced-website/blob/72f0874a3012ca2e1e3c18f2d5bfd4608712b0ea/views/index.liquid#L67-L70
+
+Lazy load toegevoegd op images:
+https://github.com/ambersr/user-experience-enhanced-website/blob/72f0874a3012ca2e1e3c18f2d5bfd4608712b0ea/views/partials/foot.liquid#L5-L10
+
+- Profielpagina
+Nieuw ontwerp gemaakt voor de profielpagina. Het proces hiervan is hier te volgen. De profielpagina bevat gegevens van de user en de opgeslagen webinars in de watchlist worden hier ook weergegeven.
+
+<img width="1470" alt="image" src="https://github.com/user-attachments/assets/12d4d473-fbf2-4b92-a80b-fd0d6a86d7c9" />
+
+- Counter in navigatie menu
+Zodra een webinar wordt toegevoegd veranderd het aantal webinars in het navigatie menu naar het juiste aantal webinars in de watchlist.
+
+https://github.com/user-attachments/assets/1d1bf3ef-3ae1-4cf9-abfa-1ae8261949dc
 
 ## Gebruik
 ### User story
+Als Nederlandse radiotherapeut wil ik een webinar die ik interessant vind toevoegen aan mijn watchlist, zodat ik de webinar op een later moment gemakkelijk kan terugkijken.
 
 
 ## Kenmerken
