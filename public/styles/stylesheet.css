@@ -117,18 +117,17 @@ span {
 .skiplink {
     position: absolute;
     z-index: 110;
-    left: -300px;
-    top: 0;
+    top: -300px;
     color: var(--primary-text-color);
     background-color: var(--primary-highlight-color);
     padding: 1em;
     border-radius: 0em 0em 1em 1em;
     transition: .2s ease-in-out;
-
 }
 
 .skiplink:focus {
     left: 7em;
+    top: 0px;
     box-shadow: 0 0 0 3px var(--orange-button);
 }
 

@@ -1119,3 +1119,37 @@ select {
 .animate-change {
     animation: bounceInDown 1s ease-out both;
 }
+
+/* -------------------------------- View transition ------------------------------------- */
+
+@view-transition {
+    navigation: auto;
+}
+
+@keyframes slide-out-left {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+@keyframes slide-in-from-right {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0%);
+    }
+}
+
+::view-transition-old(slide) {
+    animation: 0.4s ease-in-out both slide-out-left;
+}
+
+::view-transition-new(slide) {
+    animation: 0.4s ease-in-out both slide-in-from-right;
+}
