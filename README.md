@@ -3,7 +3,7 @@
 
 Het platform waar radiologen uit Indonesië en Nederland samenkomen om hun kennis te delen en recente ontwikkelingen in hun medische vakgebied te bespreken.
 
-Tijdens sprint 10 lag de focus op het verbeteren van de performance van de website. Zoals UI states, responsive images enz..
+In sprint 10 is er voornamelijk gewerkt aan de performance (laadtijd) van de website. Aan de hand van afbeeldingen responsive maken voor verschillende schermen, lazy loading toe te voegen zodat afbeeldingen pas laden wanneer ze zichtbaar zijn en afbeeldingen een juist formaat mee te geven. Dit zorgt voor een snellere en soepelere gebruikerservaring.
 
 Linkje naar de website: https://user-experience-enhanced-website-1h6y.onrender.com/webinars
 
@@ -17,7 +17,6 @@ Ontwikkel een platform waar de focus op webinars ligt.
 ## Inhoudsopgave
 
   * [Beschrijving](#beschrijving)
-  * [Gebruik](#gebruik)
   * [Kenmerken](#kenmerken)
   * [Installatie](#installatie)
   * [Bronnen](#bronnen)
@@ -25,6 +24,17 @@ Ontwikkel een platform waar de focus op webinars ligt.
 
 ## Beschrijving
 Oncollaboration is een platform waarop radiotherapeuten uit zowel Indonesië als Nederland met elkaar kennis uitwisselen. Op dit platform worden informatieve webinars weergegeven waarop de radiotherapeuten informatie kunnen op doen en delen met andere uit het vakgebied.
+
+### Ontwerpkeuzes
+
+- **Kleurgebruik**: Blauw als hoofdkleur: Straalt vertrouwen uit en wordt vaak door medische instellingen gebruikt. Felgroene call-to-action knoppen: Vallen goed op en verbeteren de gebruikerservaring.
+- **Typografie**: Duidelijke, moderne lettertype met een goed contrast om de leesbaarheid te verbeteren. De koppen zijn vetgedrukt ze extra te laten opvallen.
+- **Consistene UI**: De afgeronde randen maken de scheiding tussen elementen subtieler, waardoor de pagina minder hoekig en strenger aanvoelt. En komt ook terug op de website van het AvL ziekenhuis.
+- **Branding & Partnerschap**: Beide logo’s in de header: Versterkt de zichtbaarheid van de samenwerking.
+<br>
+<img width="950" alt="image" src="https://github.com/user-attachments/assets/3dddad5e-67fa-4e84-9920-1d21617f294f" />
+
+<img width="950" alt="image" src="https://github.com/user-attachments/assets/89c6e1f0-5934-4b50-9a82-1afaaff6cfa7" />
 
 ### Het ontwikkelde platform
 Op dit platform kun je webinars bekijken en eventueel toevoegen aan de watchlist zodat je deze op een later moment kan terugbekijken. Daarnaast bevat het platform een homepagina waarop belangrijke informatie over Oncollaboration gedeeld kan worden en de samenwerking tussen de ziekenhuizen naar voren komen.
@@ -36,28 +46,28 @@ Op dit platform kun je webinars bekijken en eventueel toevoegen aan de watchlist
 
 ### Belangrijke (nieuwe) features:
 - Performance verbetering
+  
 De website is getest op performance laadtijd. Hierbij zijn in de code een aantal aanpassingen toegevoegd waarbij het ontstaan van layshifts voorkomen wordt, images de juiste formats bevatten en de juiste grootte op het juiste beeldscherm geladen worden, lazy load toegevoegd op afbeeldingen.
 
 Webinar afbeelding format aangepast:
+
 https://github.com/ambersr/user-experience-enhanced-website/blob/72f0874a3012ca2e1e3c18f2d5bfd4608712b0ea/views/index.liquid#L67-L70
 
 Lazy load toegevoegd op images:
+
 https://github.com/ambersr/user-experience-enhanced-website/blob/72f0874a3012ca2e1e3c18f2d5bfd4608712b0ea/views/partials/foot.liquid#L5-L10
 
 - Profielpagina
+  
 Nieuw ontwerp gemaakt voor de profielpagina. Het proces hiervan is hier te volgen. De profielpagina bevat gegevens van de user en de opgeslagen webinars in de watchlist worden hier ook weergegeven.
 
 <img width="1470" alt="image" src="https://github.com/user-attachments/assets/12d4d473-fbf2-4b92-a80b-fd0d6a86d7c9" />
 
 - Counter in navigatie menu
+  
 Zodra een webinar wordt toegevoegd veranderd het aantal webinars in het navigatie menu naar het juiste aantal webinars in de watchlist.
 
 https://github.com/user-attachments/assets/1d1bf3ef-3ae1-4cf9-abfa-1ae8261949dc
-
-## Gebruik
-### User story
-Als Nederlandse radiotherapeut wil ik een webinar die ik interessant vind toevoegen aan mijn watchlist, zodat ik de webinar op een later moment gemakkelijk kan terugkijken.
-
 
 ## Kenmerken
 In dit project wordt er gebruik gemaakt van Node.js en Express om de webserver te beheren. Voor het genereren van dynamische HTML-pagina's wordt Liquid gebruikt, wat de webpagina's flexibel en makkelijk te onderhouden maakt.
