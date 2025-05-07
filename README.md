@@ -46,7 +46,7 @@ Op dit platform kun je webinars bekijken en eventueel toevoegen aan de watchlist
 ### Belangrijke (nieuwe) features:
 - Performance verbetering
   
-De website is getest op performance laadtijd. Hierbij zijn in de code een aantal aanpassingen toegevoegd waarbij het ontstaan van layshifts voorkomen wordt, images de juiste formats bevatten en de juiste grootte op het juiste beeldscherm geladen worden, lazy load toegevoegd op afbeeldingen.
+De website is geoptimaliseerd om de laadtijd te verbeteren. Er zijn aanpassingen doorgevoerd om layout shifts te voorkomen, afbeeldingen te optimaliseren voor verschillende schermgroottes en alleen de juiste formaten te laden. Daarnaast is lazy loading geïmplementeerd, zodat afbeeldingen pas worden geladen wanneer ze in beeld komen tijdens het scrollen.
 
 Webinar afbeelding format aangepast:
 
