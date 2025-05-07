@@ -66,5 +66,5 @@ document.addEventListener('submit', async function (event) {
     // Overschrijf ons formulier met de nieuwe HTML
     // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
     form.outerHTML = newState.outerHTML
-})
+ })
 }

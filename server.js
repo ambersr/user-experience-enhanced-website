@@ -174,7 +174,7 @@ app.get('/watchlist', async function (req, res) {
   // Hierdoor krijg je een array met alle unieke 'text' waarden als strings
   const watchlistArrays = Array.from(watchlistWebinarIds);
 
-  console.log(watchlistArrays);
+      console.log(watchlistArrays);
 
 
   // Het aantal webinars in de watchlistArray
@@ -366,6 +366,11 @@ app.post("/profile", async function (req, res) {
 });
 
 // ----------------------------------------- Server port -----------------------------------------
+
+// // 404 pagina als je de route niet werkt
+ app.use((req, res) => {
+   res.status(404).render("error.liquid", { })
+ })
 
 // Lokaal server port opzetten
 app.set('port', process.env.PORT || 8000)
