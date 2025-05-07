@@ -1153,3 +1153,14 @@ select {
 ::view-transition-new(slide) {
     animation: 0.4s ease-in-out both slide-in-from-right;
 }
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        transform: scale(0.98);
+    }
+}
+
+.fade-out-card {
+    animation: fadeOut 300ms ease forwards;
+}

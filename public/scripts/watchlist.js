@@ -48,7 +48,17 @@ document.addEventListener('submit', async function (event) {
     const parser = new DOMParser()
     const responseDOM = parser.parseFromString(responseText, 'text/html')
 
-    form.closest(".webinar")?.remove()
+    const webinar = form.closest(".webinar")
+
+    if (webinar) {
+    // Voeg een klasse toe die een fade-out animatie maakt
+    webinar.classList.add('fade-out-card')
+
+    // Wacht op het einde van de animatie voordat je het element verwijdert
+    webinar.addEventListener('animationend', () => {
+        webinar.remove()
+    })
+}
 
     // Zoek in die nieuwe DOM onze nieuwe state op, die we via Liquid hebben klaargemaakt
     // We gebruiken hiervoor het data-enhanced attribuut, zodat we weten waar we naar moeten zoeken
@@ -76,6 +86,13 @@ document.addEventListener('submit', async function (event) {
 
     // Overschrijf ons formulier met de nieuwe HTML
     // Hier wil je waarschijnlijk de Loading state vervangen door een Success state
-    form.outerHTML = newState.outerHTML
+    // Overschrijf ons formulier met de nieuwe HTML, met of zonder een View Transition, afhankelijk van de browser
+    if (document.startViewTransition) {
+        document.startViewTransition(function() {
+            form.outerHTML = newState.outerHTML
+        })
+    } else {
+        form.outerHTML = newState.outerHTML
+    }
 })
 }
